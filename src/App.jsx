@@ -11,12 +11,10 @@ function App() {
   function addToCart(item) {
 
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
-
     if (itemExists >= 0) { //existe en el carrito
       const updateCart = [...cart];
       updateCart[itemExists].quantity++;
-      console.log(updateCart);
-
+      setCart(updateCart)
     } else {
 
       item.quantity = 1;
@@ -25,9 +23,18 @@ function App() {
   }
 
 
+  function removeFromCart(id) {
+    setCart(prevCart => prevCart.filter((guitar) => guitar.id !== id))
+  }
+
   return (
     <>
-      <Header />
+      <Header
+        cart={cart}
+        removeFromCart={removeFromCart}
+      />
+
+
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
