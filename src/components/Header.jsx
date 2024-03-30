@@ -1,10 +1,13 @@
 import { useMemo } from "react";
 
-export const Header = ({ cart, removeFromCart }) => {
+export const Header = ({ cart, removeFromCart, increaseQuantity, decreaseQuantity }) => {
 
     const isEmpty = useMemo(() => cart.length === 0, [cart]);
     const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart]);
 
+
+    // const isEmpty = useMemo(() => cart.length === 0, [cart])
+    // const carTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart]);
     return (
         <header className="py-5 header">
             <div className="container-xl">
@@ -52,6 +55,7 @@ export const Header = ({ cart, removeFromCart }) => {
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-dark"
+                                                                    onClick={() => decreaseQuantity(guitar.id)}
                                                                 >
                                                                     -
                                                                 </button>
@@ -59,6 +63,7 @@ export const Header = ({ cart, removeFromCart }) => {
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-dark"
+                                                                    onClick={() => increaseQuantity(guitar.id)}
                                                                 >
                                                                     +
                                                                 </button>
