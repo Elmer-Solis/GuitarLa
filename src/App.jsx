@@ -7,18 +7,17 @@ function App() {
 
   const initialCart = () => {
     const localStoreCart = localStorage.getItem('cart');
-    console.log(localStoreCart);
+
     return localStoreCart ? JSON.parse(localStoreCart) : [];
   }
 
-
   const [data, setData] = useState(db)
+
   // const [cart, setCart] = useState([])
   const [cart, setCart] = useState(initialCart)
 
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 1;
-
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -37,7 +36,6 @@ function App() {
       setCart([...cart, item]);
     }
   }
-
 
   function removeFromCart(id) {
     setCart(prevCart => prevCart.filter((guitar) => guitar.id !== id))
